@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <title>
+        Seraching Data With Highlight Result
+    </title>
+</head>
+
+<body>
+    <p><input type="text" id="name" name="cari" placeholder="Please Search Here"> <button
+            onclick="search()">Cari</button></p>
+    <p id="row"></p>
+</body>
+<script type="text/javascript">
+    function search() {
+        const ajax = new XMLHttpRequest();
+        const url = "parse.php";
+        const name = document.getElementById("name").value;
+        const data = "name=" + name;
+        ajax.open("POST", url, true);
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                let return_data = JSON.parse(ajax.responseText);
+                let html = '';
+                if (return_data.length < 1) {
+                    html = "No Data Available";
+                } else {
+                    for (i = 0; i < return_data.length; i++) {
+                        let pattern = new RegExp(name, "g");
+                        let result = return_data[i].soal.toString().match(pattern);
+                        let mark = return_data[i].soal.toString().replaceAll(result, `<mark>${result}</mark>`);
+                        html += '<span>' + return_data[i].id + '.</span> && ' + mark +'<br>';
+                    }
+                }
+                document.getElementById('row').innerHTML = html;
+
+
+            }
+        }
+        ajax.send(data);
+    }
+</script>
+
+</html>
