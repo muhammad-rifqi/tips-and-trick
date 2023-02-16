@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Postman Clone</title>
+</head>
+
+<body>
+	<table width="80%" align="center" border="1">
+		<tr>
+			<td width="30%" valign="top"> Masukan URL</td>
+			<td width="50%" valign="top">
+				<p>
+					<select id="method">
+						<option value="">Choose Method</option>
+						<option value="GET">GET</option>
+						<option value="POST">POST</option>
+					</select>
+					<input type="text" id="uri" size="70%" placeholder="Entry Url">
+				</p>
+				<p>
+					<textarea id="body" cols="50" rows="10" placeholder="Entry Payload/ Raw Body"></textarea>
+				</p>
+				<button onclick="search()">Search</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top">
+				Output
+			</td>
+			<td width="50%" id="output" valign="top">
+
+			</td>
+		</tr>
+	</table>
+</body>
+<script type="text/javascript">
+	function search() {
+		var url = document.getElementById("uri").value;
+		var method = document.getElementById("method").value;
+		var payload = document.getElementById("body").value;
+		var ajax = new XMLHttpRequest();
+		if (method == 'GET') {
+			ajax.open('GET', url, true);
+			ajax.setRequestHeader('Content-Type', 'application/json');
+			ajax.onreadystatechange = function () {
+				if (ajax.readyState == 4 && ajax.status == 200) {
+					var obj = JSON.parse(ajax.responseText)
+					document.getElementById('output').innerHTML = '<textarea cols="100%" rows="50%">' + JSON.stringify(obj, undefined, 4) + '</textarea>';
+				}
+			}
+			ajax.send();
+		} else {
+			ajax.open("POST", url, true);
+			ajax.setRequestHeader('Content-Type', 'application/json');
+			ajax.onreadystatechange = function () {
+				if (ajax.readyState == 4 && ajax.status == 200) {
+					var obj = JSON.parse(ajax.responseText);
+					document.getElementById('output').innerHTML = '<textarea cols="100%" rows="50%">' + JSON.stringify(obj, undefined, 4) + '</textarea>';
+				}
+			}
+			ajax.send(JSON.stringify(payload));
+		}
+	}
+</script>
+
+</html>

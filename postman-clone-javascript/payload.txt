@@ -1,0 +1,7 @@
+sample payload:
+{
+   "username":"admin",
+   "pasword":"admin"
+}
+
+http://localhost/postman/test.php
