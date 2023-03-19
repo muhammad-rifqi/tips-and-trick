@@ -1,0 +1,53 @@
+
+<button onclick="updatePage()">Load More</button>
+<br>
+<p id="row">
+
+</p>
+
+
+<script>
+
+    function updatePage() {
+       
+        var n = localStorage.getItem('number');
+        if(n == 0){
+            var start = 2;  
+            localStorage.setItem('number', 2);  
+        }else{
+            var start = parseInt(n) + parseInt(2);
+            localStorage.setItem('number', start);  
+        }
+
+        var batas = {
+            "limit": start
+        };
+
+        var hr = new XMLHttpRequest();
+        var url = "http://localhost/testing-disini/trik/api.php";
+       
+        hr.open("POST", url, true);
+        hr.setRequestHeader('Content-Type', 'application/json');
+        hr.onreadystatechange = function () {
+            if (hr.readyState == 4 && hr.status == 200) {
+                var return_data = hr.responseText;
+                var decode = JSON.parse(return_data);
+                var html = '';
+                for(i = 0; i < decode.length; i++){
+                    if(decode[i].id_produk == "" || decode[i].id_produk == undefined || decode[i].id_produk == 0){
+                        return false;
+                    }else{
+                        html +='<p>'+decode[i].id_produk+'</p>';
+                    }
+                }
+                document.getElementById("row").innerHTML = html;
+            }
+        }
+        hr.send(JSON.stringify(batas));
+    }
+
+    window.addEventListener("load",()=> {
+        localStorage.setItem('number', 0);
+    })
+</script>
+
