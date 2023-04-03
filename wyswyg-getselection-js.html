@@ -1,0 +1,32 @@
+<script>
+
+  function bold() {
+    var text = document.getElementById("text");
+    var selection = text.value.substr(text.selectionStart, text.selectionEnd - text.selectionStart);
+    var position = text.value.replace(selection, '<b>' + selection + '</b>');
+    document.getElementById("text").value = position;
+    document.getElementById("row").innerHTML=position;
+  }
+
+  function italic() {
+    var text = document.getElementById("text");
+    var selection = text.value.substr(text.selectionStart, text.selectionEnd - text.selectionStart);
+    var position = text.value.replace(selection, '<i>' + selection + '</i>');
+    document.getElementById("text").value = position;
+    document.getElementById("row").innerHTML=position;
+  }
+
+  function underline() {
+    var text = document.getElementById("text");
+    var selection = text.value.substr(text.selectionStart, text.selectionEnd - text.selectionStart);
+    var position = text.value.replace(selection, '<u>' + selection + '</u>');
+    document.getElementById("text").value = position;
+    document.getElementById("row").innerHTML=position;
+  }
+
+  
+</script>
+<TEXTAREA id="text" cols="56" rows="10">Highlight this text or parts of it and click the button below!</TEXTAREA><BR>
+<INPUT type="button" onclick="bold()" value="B" /> <INPUT type="button" onclick="italic()" value="I" /> <INPUT type="button" onclick="underline()" value="U" />
+
+<p id="row">  </p>
