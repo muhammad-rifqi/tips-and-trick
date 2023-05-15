@@ -1,0 +1,51 @@
+<style>
+  #pbc{ width:100%; height:16px; background:#fff; border:#000 1px solid; position: fixed;}
+  #pbc > #pb{ position: relative; top:0px; background: #06C; width:0%; height:16px; color: #0FF; text-align:center; }
+  </style>
+
+<div id="pbc">
+  <div id="pb"></div>
+</div>
+
+<script type="text/javascript">
+
+  var x;
+  var y;
+
+  function scrolling() {
+
+    var pb = document.getElementById("pb");
+    var y = window.pageYOffset;
+    var x = window.pageXOffset;
+
+    console.log(y)
+
+    if (y > 150) {
+      pb.style.width = "25%";
+    }if (y > 300){
+      pb.style.width = "50%";
+    }if (y > 450){
+      pb.style.width = "75%";
+    }if (y > 600) {
+      pb.style.width = "100%";
+    }if(y < 150){
+      pb.style.width = "0%";
+    }
+  }
+
+  window.addEventListener("scroll", scrolling);
+
+</script>
+</head>
+
+<body>
+    <br /> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</body>
+</html>
+
