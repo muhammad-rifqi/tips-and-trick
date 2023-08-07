@@ -1,0 +1,82 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Calibri';
+}
+
+body{
+    min-height: 100vh;
+    background-color: #e7f2fd;
+}
+
+.container{
+    position: relative;
+    max-width: 1350px;
+    width: 100%;
+    padding: 20px;
+    margin: 50px auto;
+}
+
+.filters_button{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button{
+    padding: 10px 20px;
+    font-size: 18px;
+    background: #fff;
+    border: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+button.active{
+    background-color: #4070f4;
+    color: #fff;
+}
+
+.filterable_card{
+    display: flex;
+    margin-top: 25px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.card{
+    flex-grow: 1;
+    background-color: #fff;
+    flex-basis: 300px;
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card img{
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    height: 210px;
+    object-fit: cover;
+}
+
+.card.hide{
+    display: none;
+}
+.card_body{
+    padding: 15px 20px 20px;
+}
+
+.card_title{
+        font-size: 18px;
+        font-weight: 500;
+        color: #333;
+}
+
+.card_text{
+    font-size: 18px;
+    color: #333;
+}
