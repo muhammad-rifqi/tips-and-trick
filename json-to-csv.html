@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSON TO CSV</title>
+</head>
+
+<body>
+
+    <h1>
+        LIST JSON TO CSV
+    </h1>
+
+</body>
+
+<script>
+
+    fetch('https://reqres.in/api/users?page=2')
+        .then(response => response.json())
+        .then((data) => {
+            handleData(data)
+        })
+
+    function handleData(list) {
+        const header = Object.keys(list.data[0]).toString();
+        const maindata = list.data.map((item, index) => {
+            return Object.values(item).toString();
+        })
+
+        const csv = [header, ...maindata].join('\n');
+        downloadCsv(csv);
+    }
+
+    function downloadCsv(rows) {
+        const blob = new Blob([rows], { type: 'application/csv' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = 'csv-file.csv';
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+    }
+
+
+</script>
+
+</html>
