@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Image Resize From String
+	</title>
+</head>
+
+<body>
+	<h3> Upload Base 64 Foto </h3>
+	<p>
+		<input type="file" id="photo">
+	</p>
+	<p>
+		<input type="button" id="btn" value="Testing">
+	</p>
+</body>
+
+<script>
+	const btns = document.getElementById("btn");
+	btns.addEventListener("click", (e) => {
+		const foto = document.getElementById("photo");
+		const ft = foto.files[0];
+		const data = new FileReader();
+		data.addEventListener("load", () => {
+			sendToServer(data.result);
+		})
+		data.readAsDataURL(ft);
+	});
+
+	function sendToServer(data){
+		const obj = {
+			"images": data
+		};
+		const ajax = new XMLHttpRequest();
+		ajax.open("POST", 'parse.php');
+		ajax.setRequestHeader('Content-type', 'application/json'); 
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				console.log(ajax.responseText);
+			}
+		}
+		ajax.send(JSON.stringify(obj))
+	}
+
+</script>
+
+</html>
