@@ -10,7 +10,6 @@ $exp = explode(",",$data['images']);
 $convert = base64_decode($exp[1],true);
 $im = imagecreatefromstring($convert);
 if($im !== false){
-    if ($im !== false) {
         header('Content-Type: image/jpeg');
         $percent = 0.5;
         $width = imagesx($im);
@@ -22,7 +21,6 @@ if($im !== false){
         imagejpeg($img,$tgl);
         imagedestroy($img);
         echo json_encode(array("success"=>true));
-    }else{
+}else{
         echo json_encode(array("success"=>false));
-    }
 }
