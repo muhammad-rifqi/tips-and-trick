@@ -13,9 +13,9 @@ $data = array(
     "grantType"=>"client_credentials", 
     "additionalInfo"=>new stdClass
  );
- $url = "https://service.synxchro.co.id/fello_snap/v1/access/token/b2b";
+ $url = "url";
  $response = $client->post($url, [
-     'headers' => ['x-timestamp'=>'2023-02-13T00:00:00+07','x-client-key'=>'5d26d44e4243dfa85df78d504a8170ef','x-signature'=>'H/V9EP7DwL6a4xwOhR81UfedZS0/gdVm2/VtZnZOOukSEUGa2Q5JhugU0QUKvZoYzJq53DXJVCZv2F9WY6O07A==','content-type'=>'application/json'],
+     'headers' => ['x-timestamp'=>'2023-02-13T00:00:00+07','x-client-key'=>'','x-signature'=>'','content-type'=>'application/json'],
      'body'    => json_encode($data)
  ]); 
  
