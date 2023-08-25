@@ -15,19 +15,19 @@ $data = array(
         "description"=> "productive Snap",
         "partnerReferenceNo"=> "20230213000126",
         "additionalInfo" => array(
-            "notifUrl" => "https://arneva.co.id/fello_snap/v1/callback"
+            "notifUrl" => "https://arneva.co.id/v1/callback"
         )
  );
 
  
- $url = "https://service.synxchro.co.id/fello_snap/v1/registration-account-creation";
+ $url = "";
  $response = $client->post($url, [
      'headers' => [
      'content-type'=>'application/json',
-     'Authorization' => 'Bearer 06feca9225a1e3fb838e69892ef80487a47e52d3',
+     'Authorization' => 'Token',
      'x-timestamp'=>'2023-02-13T00:00:00+07',
-     'x-signature' => '5t6e7PXKhWPCxbU0OY2OFvVAHSCpuYX+p4YEtlcmjUzB++HzCfNqnhDPMZyVWBkgyVA+Lk02tV5NhMjGSpqL9w==',
-     'x-partner-id'=>'90fd238f-3c83-4ca4-a64e-d68aeb643b5e',
+     'x-signature' => '',
+     'x-partner-id'=>'',
      'x-external-id'=> time(),
      'channel-id' => 1,
     
