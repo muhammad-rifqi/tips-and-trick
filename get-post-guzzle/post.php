@@ -10,13 +10,12 @@ use GuzzleHttp\Psr7\Response;
 $client = new \GuzzleHttp\Client();
 
 $data = array(
-    'customer' => '89090',
-    'username' => 'app',
-    'password' => 'pwd'  
+    "grantType"=>"client_credentials", 
+    "additionalInfo"=>new stdClass
  );
- $url = "http://localhost/guzzle/send.php";
+ $url = "https://service.synxchro.co.id/fello_snap/v1/access/token/b2b";
  $response = $client->post($url, [
-     'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+     'headers' => ['x-timestamp'=>'2023-02-13T00:00:00+07','x-client-key'=>'5d26d44e4243dfa85df78d504a8170ef','x-signature'=>'H/V9EP7DwL6a4xwOhR81UfedZS0/gdVm2/VtZnZOOukSEUGa2Q5JhugU0QUKvZoYzJq53DXJVCZv2F9WY6O07A==','content-type'=>'application/json'],
      'body'    => json_encode($data)
  ]); 
  
