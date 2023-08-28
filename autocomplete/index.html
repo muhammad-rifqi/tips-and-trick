@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>
+        Auto Complete
+    </title>
+    <style>
+        #result {
+            border: 1px dotted #ccc;
+            padding: 3px;
+        }
+
+        #result ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #result ul li {
+            padding: 5px 0;
+        }
+
+        #result ul li:hover {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form autocomplete="off"><input type="text" name="q" id="q" onKeyUp="showResults(this.value)" />
+        <div id="result"></div>
+    </form>
+
+
+</body>
+
+<script>
+
+    function showResults(val) {
+        res = document.getElementById("result");
+        res.innerHTML = '';
+        if (val == '') {
+            return;
+        }
+        let list = '';
+        fetch('/autocomplete/suggest.php?q=' + val).then(
+            function (response) {
+                return response.json();
+            }).then(function (row) {
+                for (let i = 0; i < row?.data?.length; i++) {
+                    list += '<li>' + row?.data[i]?.username + '</li>';
+                }
+                res.innerHTML = '<ul>' + list + '</ul>';
+                return true;
+            }).catch(function (err) {
+                console.warn('Something went wrong.', err);
+                return false;
+            });
+    }
+
+</script>
+
+</html>
