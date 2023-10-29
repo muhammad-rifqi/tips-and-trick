@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Scroll </title>
+    <style>
+        div {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 0%;
+            height: 3px;
+            background-color: blue;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div></div>
+    <h2>Scroll</h2>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum omnis voluptatum corrupti magnam maiores qui
+        molestiae repellendus quasi expedita quisquam? Consequatur ad quos expedita ut fuga, pariatur quaerat magni
+        autem.
+    </p>
+</body>
+
+<script>
+
+    const div = document.querySelector("div");
+    window.addEventListener("scroll", (e) => {
+        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+        const scrolled = (scrollTop / (scrollHeight - clientHeight) * 100);
+        console.log(scrolled)
+       div.style.width = `${scrolled}%`
+    });
+
+
+</script>
+
+</html>
