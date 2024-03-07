@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Connected Peers</title>
+</head>
+
+<body>
+    <p><input type="text" id="localPeerID" /></p>
+    <p><input type="text" id="remotePeerID" /><button id="btn-call">Call</button></p>
+    <p><video id="localVideo"></video></p>
+    <p><video id="remoteVideo"></video></p>
+</body>
+<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<script>
+    var peer = new Peer();
+    var localStream;
+    var pID = document.getElementById("localPeerID");
+    var rID = document.getElementById("remotePeerID");
+    var btnID = document.getElementById("btn-call");
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio : true }).then((stream) => {
+        localStream = stream;
+        var videoElement = document.getElementById("localVideo");
+        videoElement.srcObject = localStream;
+        videoElement.onloadeddata = () => videoElement.play();
+    })
+
+    peer.on("open", (id) => {
+        pID.value = id;
+    })
+
+    btnID.addEventListener("click", (e) => {
+        var valrID = rID.value;
+        var call = peer.call(valrID, localStream);
+        call.on("stream", stream => {
+            var remoteVideo = document.getElementById("remoteVideo");
+            remoteVideo.srcObject = stream;
+            remoteVideo.onloadeddata = () => remoteVideo.play();
+        })
+    })
+
+    peer.on("call", (call) => {
+        call.answer(localStream);
+        call.on("stream", (stream) => {
+            var remoteVideo = document.getElementById("remoteVideo");
+            remoteVideo.srcObject = stream;
+            remoteVideo.onloadeddata = () => remoteVideo.play();
+        })
+
+    })
+
+
+</script>
+
+</html>
