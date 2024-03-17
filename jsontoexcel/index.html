@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON TO EXCEL</title>
+</head>
+<body>
+    <button type="button" id="exportExcel"> Export Excel </button>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" type="text/javascript"></script>
+<script>
+
+    const exp = document.getElementById("exportExcel")
+    exp.addEventListener("click", async (event) => {
+        await fetch('sample.json').then(resp => resp.json()).then((data) => {
+            const worksheet = XLSX.utils.json_to_sheet(data)
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Employees");
+            XLSX.writeFile(workbook, "Employee_Lists.xlsx", { compression: true });
+        })
+    });
+</script>
+</html>
