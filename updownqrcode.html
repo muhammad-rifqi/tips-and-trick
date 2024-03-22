@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpdownQrCode</title>
+</head>
+
+<body bgcolor="blue">
+    <p align="center"><img id="qrcodeimg"></p>
+    <p align="center">
+        <input type="text" id="txt" />
+    </p>
+    <p align="center">
+        <button id="generate">Generate</button> <button id="download">Download</button>
+    </p>
+
+    <script>
+        const img = document.querySelector("#qrcodeimg");
+        const texts = document.querySelector("#txt");
+        const generates = document.querySelector("#generate");
+        const downloads = document.querySelector("#download");
+
+        generates.addEventListener("click", (e) => {
+            const qr = `https://api.qrserver.com/v1/create-qr-code/?data=${texts.value}&amp;size=100x100`;
+            img.setAttribute('src', qr);
+            img.setAttribute('alt', 'qrcode-vanilla-js');
+            img.setAttribute('width', 100)
+        })
+
+        downloads.addEventListener("click", async (e) => {
+            const data = img.getAttribute('src');
+            const get = await fetch(data);
+            const blob = await get.blob();
+            const downloadLink = document.createElement("a");
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = Math.floor(Math.random() * 200000000000) + ".jpg";
+            downloadLink.click();
+            URL.revokeObjectURL(downloadLink.href);
+        })
+
+
+
+    </script>
+</body>
+
+</html>
