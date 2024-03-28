@@ -1,0 +1,14 @@
+<script>
+  
+  const imageUrlToBase64 = async (url) => {
+    const data = await fetch(url)
+    const blob = await data.blob();
+    const reader = new FileReader();
+    reader.onload = () => {
+        const base64data = reader.result;
+        console.log(base64data)
+    }
+    reader.readAsDataURL(blob);
+}
+imageUrlToBase64('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR80eKZGtUY9MOIcrnhTFzWyL7V7LKMi3K1nsuVlcEs4Q&s'); 
+</script>
