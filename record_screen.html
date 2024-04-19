@@ -1,0 +1,72 @@
+<button id="recording-button">Start recording</button>
+
+<script>
+    var STATUS = false;
+    var recordingButton = document.getElementById("recording-button"); // The button
+
+    recordingButton.addEventListener("click", function () {
+        STATUS = !STATUS; // Start / Stop recording
+        if (STATUS) {
+            recordingButton.innerHTML = "Stop Recording";
+            startRecording(); // Start the recording
+        } else {
+            recordingButton.innerHTML = "Start Recording";
+            stopRecording(); // Stop screen recording
+        }
+    });
+
+
+    var blob, deviceRecorder = null;
+    var chunks = [];
+
+
+
+    async function startRecording() {
+        var stream = await navigator.mediaDevices.getDisplayMedia(
+            { video: { mediaSource: "screen" }, audio: true }
+        );
+
+        // For recording the mic audio 
+        let audio = await navigator.mediaDevices.getUserMedia({
+            audio: true, video: false
+        })
+
+        // Combine both video/audio stream with MediaStream object 
+        let combine = new MediaStream(
+            [...stream.getTracks(), ...audio.getTracks()])
+
+
+
+        deviceRecorder = new MediaRecorder(combine)
+
+        deviceRecorder.ondataavailable = (e) => {
+            if (e.data.size > 0) {
+                chunks.push(e.data);
+            }
+        }
+        deviceRecorder.onstop = () => {
+            chunks = [];
+        }
+        deviceRecorder.start(250)
+    }
+
+
+    function stopRecording() {
+        var filename = window.prompt("File name", "video"); // Ask the file name
+
+        deviceRecorder.stop(); // Stopping the recording
+        blob = new Blob(chunks, { type: "video/mp4" })
+        chunks = [] // Resetting the data chunks
+        var dataDownloadUrl = URL.createObjectURL(blob);
+
+        // Downloadin it onto the user's device
+        let a = document.createElement('a')
+        a.href = dataDownloadUrl;
+        a.download = `${filename}.mp4`
+        a.click()
+
+        URL.revokeObjectURL(dataDownloadUrl)
+    }
+
+
+</script>
