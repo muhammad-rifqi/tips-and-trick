@@ -1,0 +1,23 @@
+<button id="btn">Share File</button>
+
+<script>
+
+  const shareButton = document.getElementById("btn");
+
+  shareButton.addEventListener("click", async () => {
+
+    const response = await fetch('some.jpg');
+    const blob = await response.blob();
+    const file = new File(['blob'], "some.jpg", { type: blob.type });
+    try {
+      await navigator.share({
+        title: "some.jpg",
+        files: [file]
+      });
+    } catch (err) {
+      console.error("Share failed:", err.message);
+    }
+  });
+
+
+</script>
