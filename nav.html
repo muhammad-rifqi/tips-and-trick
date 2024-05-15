@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav Responsive</title>
+    <style>
+
+                /* Nav Web */
+        .nav1 {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            background-color: #006699;
+            color: #FFFFFF;
+            text-decoration: none;
+            float: left;
+            border-bottom: 1pt solid #fff;
+            border-top: 1pt solid #FFFFFF;
+            width: 90%;
+            display: block;
+        }
+
+        .nav1 li {
+            margin: 0px;
+            padding: 0px;
+            color: #FFFFFF;
+            text-decoration: none;
+            float: left;
+        }
+
+        .nav1 li a {
+            display: block;
+            line-height: 1.8;
+            padding: 0 15px;
+            border-right: 2px solid #fff;
+            color: #FFFFFF;
+            text-decoration: none;
+            float: left;
+            width: 78px;
+            text-align: center;
+        }
+
+        .nav1 li a:hover {
+            background-color: #009999;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        /* Nav Mobile */
+
+        .nav2 {
+            list-style: none;
+            background-color: #006699;
+            color: #FFFFFF;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            text-decoration: none;
+            display: none;
+        }
+
+        .nav2 li {
+            margin: 0px;
+            padding: 0px;
+            color: #FFFFFF;
+
+        }
+
+        .nav2 li a {
+            display: block;
+            padding: 0 15px;
+            line-height: 1.8;
+            border-bottom: 1px solid #e4d135;
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+
+        .nav2 li a:hover {
+            background-color: #009999;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .navbar {
+            width: 100%;
+            border: 1px solid #000;
+        }
+
+        .navbar1 {
+            width: 70%;
+            float: left;
+        }
+
+        .navbar2 {
+            width: 30%;
+            float: right;
+        }
+
+        button {
+            width: 100%;
+            height: 30px;
+        }
+
+        .both {
+            clear: both;
+        }
+
+        @media screen and (max-width: 600px) {
+
+            .navbar2 {
+                width: 100%;
+                cursor: pointer;
+            }
+
+            .nav1 {
+                display: none;
+            }
+
+            .nav2 {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar1">
+            <ul class="nav1">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Sitemap</a></li>
+            </ul>
+        </div>
+        <div class="navbar2">
+            <button onclick="shows()">show</button>
+        </div>
+        <div class="both"></div>
+    </div>
+
+    <ul class="nav2">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+
+</body>
+
+<script>
+    function shows() {
+        let x = document.getElementsByClassName("nav2")[0];
+        if (x.style.display == 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+
+    // toggle.classList.toggle("style.css");
+</script>
+
+</html>
