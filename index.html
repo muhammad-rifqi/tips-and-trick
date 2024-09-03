@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Biller Management</title>
+</head>
+
+<body>
+    <h1 id="saldo"></h1>
+    <hr>
+    <table border="1" width="100%" height="400">
+        <tr>
+            <td height="30">DEBIT</td>
+            <td>KREDIT</td>
+        </tr>
+        <td>
+            <input type="number" name="debit" id="debit">
+            <button id="simpandeb">Simpan</button>
+        </td>
+        <td height="50">
+            <input type="number" name="kredit" id="kredit">
+            <button id="simpankre">Simpan</button>
+        </td>
+        </tr>
+        <tr>
+            <td>DEBIT</td>
+            <td>KREDIT</td>
+        </tr>
+    </table>
+</body>
+<script>
+    const saldo = 10000;
+    document.getElementById("saldo").innerHTML = "Saldo Anda => " + saldo;
+
+    const debitval = [];
+    const kreditval = [];
+
+    document.getElementById("simpandeb").addEventListener("click", (event) => {
+        const debit = document.getElementById("debit").value;
+        const debitNum = debit;
+        localStorage.setItem("listdata", JSON.stringify([{"num": debitNum}]));
+    });
+    const ddd = localStorage.getItem("listdata");
+    console.log(ddd)
+</script>
+
+</html>
