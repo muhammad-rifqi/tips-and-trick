@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Notifikasi Table Socket.IO</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <h2>Daftar Pesan (Realtime)</h2>
+
+  <input type="text" id="msgInput" placeholder="Ketik pesan..." />
+  <button onclick="kirimNotif()">Kirim</button>
+
+  <table border="1" cellpadding="5" cellspacing="0" style="margin-top:10px;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Pesan</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <script>
+    const socket = io();
+
+    // render ulang tabel pesan
+    function renderTable(data) {
+      const tbody = document.getElementById("tableBody");
+      tbody.innerHTML = "";
+      data.forEach((item) => {
+        const row = `<tr><td>${item.id}</td><td>${item.text}</td></tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+
+    // terima pesan awal
+    socket.on("initMessages", (data) => {
+      renderTable(data);
+    });
+
+    // update pesan baru
+    socket.on("updateMessages", (data) => {
+      renderTable(data);
+    });
+
+    // kirim pesan ke server
+    function kirimNotif() {
+      const msg = document.getElementById("msgInput").value;
+      if (msg.trim() !== "") {
+        socket.emit("sendNotif", { message: msg });
+        document.getElementById("msgInput").value = "";
+      }
+    }
+  </script>
+</body>
+</html>
