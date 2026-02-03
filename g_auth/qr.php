@@ -1,0 +1,1 @@
+<img src="key.php" alt="Scan QR Code" />
