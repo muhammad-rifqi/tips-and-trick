@@ -1,0 +1,11 @@
+<button onclick="next()">Next Queue</button>
+
+<script>
+let ws = new WebSocket("ws://localhost:8080");
+
+function next() {
+    ws.send(JSON.stringify({
+        action: "next"
+    }));
+}
+</script>

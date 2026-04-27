@@ -1,0 +1,11 @@
+<h1>Nomor Antrian:</h1>
+<h2 id="num">-</h2>
+
+<script>
+let ws = new WebSocket("ws://localhost:8080");
+
+ws.onmessage = function(event) {
+    let data = JSON.parse(event.data);
+    document.getElementById("num").innerText = data.number;
+};
+</script>
