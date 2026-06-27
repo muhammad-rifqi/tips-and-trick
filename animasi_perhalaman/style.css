@@ -1,0 +1,115 @@
+/* ==========================================================================
+   ATURAN UTAMA: Mengaktifkan Transisi Halaman Native
+   ========================================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+/* ==========================================================================
+   ANIMASI EFEK WIPE (Menyapu dari Kanan ke Kiri)
+   ========================================================================== */
+/* Halaman Lama (Old Page): Tetap diam dan ditaruh di latar belakang */
+html::view-transition-old(root) {
+  animation: none;
+  z-index: -1;
+}
+
+/* Halaman Baru (New Page): Beranimasi menyapu menutup halaman lama */
+html::view-transition-new(root) {
+  animation: wipe-reveal 0.5s ease-in-out forwards;
+}
+
+/* Definisi Keyframes Efek Wipe menggunakan Clip Path Inset */
+@keyframes wipe-reveal {
+  from { 
+    clip-path: inset(0 0 0 100%); /* Mulai terpotong penuh dari kanan */
+  }
+  to { 
+    clip-path: inset(0 0 0 0); /* Terbuka penuh ke kiri */
+  }
+}
+
+/* ==========================================================================
+   STYLING TAMBAHAN (Supaya Desain Halaman Terlihat Menarik)
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a2e;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* Navigasi / Menu */
+.navbar {
+  background-color: #16213e;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  color: #94a3b8;
+  text-decoration: none;
+  margin: 0 1.5rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #00fff0;
+  background-color: rgba(0, 255, 240, 0.1);
+}
+
+.nav-link.active {
+  color: #1a1a2e;
+  background-color: #00fff0;
+}
+
+/* Wadah Konten */
+.content-wrapper {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.card {
+  background-color: #16213e;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border-left: 5px solid #00fff0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.card.accent {
+  border-left-color: #e94560;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  color: #cbd5e1;
+}
+
+code {
+  background-color: #0f172a;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #e94560;
+}
